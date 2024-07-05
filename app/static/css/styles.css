@@ -1,0 +1,156 @@
+#map-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+/* MAP LAYOUT */
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* INFO */
+.info-container {
+  background-color: white;
+  position: absolute;
+  top: 0px;
+  min-width: 340px;
+  max-width: 100%;
+  width: 440px;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+  padding: 10px;
+}
+
+#closeButton {
+  cursor: pointer;
+  color: #777;
+  float: right;
+  font-size: 25px;
+}
+
+#closeButton:hover {
+  color: blue;
+}
+
+/* SEARCH WIDGET */
+.search-box {
+  background-color: white;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  border-radius: 10px;
+  min-width: 320px;
+  max-width: 90%;
+  width: 400px;
+  height: 3em;
+  z-index: 1001;
+  display: flex;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+}
+
+#search-input {
+  flex-grow: 1;
+  border-radius: 10px;
+  border: none;
+  padding-left: 0.5em; 
+}
+
+#search-input:focus {
+  outline: none;
+}
+
+.search-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding-right: 0.5em;
+}
+
+/* Style for the icon */
+.search-button i,
+.search-button img,
+.search-button .custom-icon {
+  transition: color 0.3s, transform 0.3s;
+}
+
+/* Hover effect */
+.search-button:hover i,
+.search-button:hover img,
+.search-button:hover .custom-icon {
+  transform: scale(1.2);
+}
+
+
+.search-results {
+  border: 1px solid #ccc;
+  max-height: 450px;
+  overflow-y: auto;
+  position: absolute;
+  top: 60px; /* Adjust this value to position the results container below the input and buttons */
+  left: 0;   /* Adjust this value to align the results container with the left edge of the input */
+  width: calc(100% - 2px); /* Adjust width to match the width of the input */
+  background-color: white; /* Set background color to white */
+}
+.search-results div {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+.search-results div:hover {
+  background-color: #f0f0f0;
+}
+
+/* LAYER SELECTOR */
+#layer-selector {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  z-index: 1000;
+  border-radius: 10%;
+  border: 1px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+}
+
+.img-container {
+  position: relative;
+}
+
+#switchImage {
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  border-radius: 10%;
+  border: 1px solid white;
+  transition: border-width 0.1s;
+}
+
+.img-container:hover #switchImage {
+  border-width: 3px;
+} 
+
+#switchText {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+/* ZOOM CONTROLS */
+.custom-zoom {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  z-index: 1000;
+}
+
+.custom-zoom button {
+  width: 30px !important;
+  height: 30px !important;
+  font-size: 1.5em !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,12 @@
+name: fotoviewer
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - ipykernel
+  - geopandas
+  - pyogrio
+  - pip:
+    - exif
