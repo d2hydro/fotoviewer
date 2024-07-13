@@ -240,7 +240,7 @@ function filterFeaturesByDate(fotoLayer, minDate, maxDate) {
     var featureDateTime = new Date(feature.get('date_time'));
 
     if (featureDateTime >= minDate && featureDateTime <= maxDate) {
-      feature.setStyle([greyIcon]);
+      feature.setStyle([unselectIcon]);
     } else {
       feature.setStyle(new ol.style.Style(null));
     }
