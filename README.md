@@ -1,4 +1,4 @@
-# fotoviewer
+# Fotoviewer
 Fotoviewer ter ondersteuning bij wateroverlast en overstroming-situaties
 
 Inhoudsopgave
