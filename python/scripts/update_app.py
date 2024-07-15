@@ -2,7 +2,7 @@
 from fotoviewer.update_app import update_app
 from pathlib import Path
 
-app_dir = Path(__file__).parents[1] / "app"
+app_dir = Path(__file__).parents[2] / "app"
 """"
 Updaten van de fotoviewer app/static/data en app/static/js/fotos.js op basis van de data_dir/datastore directory
 

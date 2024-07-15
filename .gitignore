@@ -1,0 +1,5 @@
+
+/python/dist
+*.cmd
+/python/fotoviewer.egg-info
+/python/fotoviewer.egg-info

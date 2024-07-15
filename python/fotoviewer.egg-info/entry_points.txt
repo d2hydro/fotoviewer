@@ -1,4 +1,0 @@
-[gui_scripts]
-parse_inbox = scripts.parse_inbox:main
-read_mailbox = scripts.read_mailbox:main
-update_app = scripts.update_app:main
