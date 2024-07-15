@@ -32,7 +32,7 @@ De app werkt uit-de-box door op `index.html` te klikken:
 ## Python installatie
 Voor het processen van e-mails gebruiken we Python. 
 
-Maak een `Anaconda` environment met [environment.yml](python\environment.yml), zie [Anaconda docs](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) voor uitleg.
+Maak een `Anaconda` environment met [environment.yml](python/environment.yml), zie [Anaconda docs](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) voor uitleg.
 
 Daarna kun je fotoviewer installeren met:
 
