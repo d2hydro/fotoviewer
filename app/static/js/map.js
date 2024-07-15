@@ -72,7 +72,8 @@ var highlightedFeature = null;
 // reset highlight
 function reset_highlight(){
   if (highlightedFeature) {
-  highlightedFeature.setStyle([unselectIcon])
+  highlightedFeature.setStyle([unselectIcon]);
+  highlightedFeature = null
 }};
 
 function initializeDateRangeSlider(fotoLayer) {

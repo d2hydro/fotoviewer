@@ -1,0 +1,6 @@
+geopandas
+pyogrio
+pillow
+
+[tests]
+pytest
