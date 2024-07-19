@@ -9,25 +9,31 @@ Inhoudsopgave
 De fotoviewer is gemaakt door [D2Hydro](https://d2hydro.nl/) samen met [Rijkswaterstaat](https://www.rijkswaterstaat.nl/) en [Waterschap Amstel Gooi en Vecht](https://www.agv.nl/)
 
 ## Runnen fotoviewer
-Download de app uit de release: [app](https://github.com/d2hydro/fotoviewer/releases/download/2024.7.0/app.zip). Deze bevat de volgende inhoud:
+Download de fotoviewer uit de release: [fotoviewer](https://github.com/d2hydro/fotoviewer/releases/latest/download/fotoviewer.zip). Deze bevat de volgende inhoud:
 
 ```
-app
-├── static
-│   ├── data
-│   │   ├── image1.jpg
-│   │   ├── image2.png
-│   │   ├── imagex.jpg
-│   │   └── ....
-│   └── js
-│       ├── fotos.js
-│       └── ...
-└── index.html
+├──app
+│   ├── static
+│   │   ├── data
+│   │   │   ├── image1.jpg
+│   │   │   ├── image2.png
+│   │   │   ├── imagex.jpg
+│   │   │   └── ....
+│   │   └── js
+│   │       ├── fotos.js
+│   │       └── ...
+│   └── index.html
+└──scripts
+    ├── parse_inbox.py
+    ├── read_mailbox.py
+    └── update_app.py
 ```
 
-De app werkt uit-de-box door op `index.html` te klikken:
+De app werkt uit-de-box door op `app\index.html` te klikken:
 
 ![fotoviewer](fotoviewer.png "Fotoviewer")
+
+Let op (!), voor het processen van mails (zie: [Mails-processen](#mails-processen)) is het belangrijk dat het mapje `scripts` op gelijke hoogte blijft staan met het mapje `app`, zoals het geval is in fotoviewer.zip. 
 
 ## Python installatie
 Voor het processen van e-mails gebruiken we Python. 
@@ -62,17 +68,17 @@ Voor het versturen van foto's per e-mail is het is het belangrijk dat:
 - U bewust bent dat het `onderwerp` en de `inhoud` van de mail ook in de fotoviewer zichtbaar zullen zijn (discretie geadviseerd).
 
 ### lezen-mails
-E-mails dienen te worden opgeslagen in een lokale `inbox` sub-folder in de [data folder](#data-folder). Als alternatief is het ook mogelijk emails automatisch uit te lezen met een script, zie: [read_mailbox.py](python/scripts/read_mailbox.py). 
+E-mails dienen te worden opgeslagen in een lokale `inbox` sub-folder in de [data folder](#data-folder). Als alternatief is het ook mogelijk emails automatisch uit te lezen met een script, zie: [read_mailbox.py](scripts/read_mailbox.py). 
 
 ### processen inbox
 In deze stap wordt vanuit de `inbox` data verplaatst in de [data folder](#data-folder):
 1. Worden emls gelezen uit `inbox`
 2. Foto's en metadata (in `fotos.gpkg`) opgeslagen in `datastore`
 3. Eml's verplaatst van `inbox` naar `archive`
-Dit wordt uitgevoerd met [parse_inbox.py](python/scripts/parse_inbox.py)
+Dit wordt uitgevoerd met [parse_inbox.py](scripts/parse_inbox.py)
 
 ### update_app
-In deze stap wordt vanuit `datastore` de [fotoviewer](#runnen-fotoviewer) geupdated. De fotos komen in `app/static/data` te staan en de meta-data in `app/static/js/fotos.js`. Dit wordt uitgevoerd met [update_app.py](python/scripts/update_app.py)
+In deze stap wordt vanuit `datastore` de [fotoviewer](#runnen-fotoviewer) geupdated. De fotos komen in `app/static/data` te staan en de meta-data in `app/static/js/fotos.js`. Dit wordt uitgevoerd met [update_app.py](scripts/update_app.py)
 
 ### windows environment variables
 In de scripts wordt verwezen naar `app_dir` (`inbox` en `datastore`), `email_address` en `password`. U hoeft deze variabelen niet in de script te zetten, wanneer u in uw Windows omgevingsvariabelen (environment variables) de volgende variabelen opneemt:
