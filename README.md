@@ -38,7 +38,7 @@ Let op (!), voor het processen van mails (zie: [Mails-processen](#mails-processe
 ## Python installatie
 Voor het processen van e-mails gebruiken we Python. 
 
-Maak een `Anaconda` environment met [environment.yml](python/environment.yml), zie [Anaconda docs](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) voor uitleg.
+Maak een `Anaconda` environment met [environment.yml](environment.yml), zie [Anaconda docs](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) voor uitleg.
 
 ## Mails processen
 
