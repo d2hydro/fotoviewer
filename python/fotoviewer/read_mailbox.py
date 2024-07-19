@@ -3,7 +3,7 @@ import email
 from email import policy
 import re
 from pathlib import Path
-from fotoviewer import FOTOVIEWER_ADDRES, FOTOVIEWER_PASS, INBOX, create_sub_dirs, date_time_file_prefix
+from fotoviewer import FOTOVIEWER_ADDRESS, FOTOVIEWER_PASS, INBOX, create_sub_dirs, date_time_file_prefix
 
 
 def sanitize_filename(filename):
@@ -18,9 +18,9 @@ def eml_file_name(subject, date_time):
     if date_time is not None:
         eml_file_name = date_time_file_prefix(date_time)
     
-    return sanitize_filename(f"{eml_file_name}_{subject}.eml")
+    return f"{sanitize_filename(f"{eml_file_name}_{subject}")}.eml"
 
-def read_mailbox(inbox:Path|None = INBOX, email_address:str | None = FOTOVIEWER_ADDRES, password:str | None = FOTOVIEWER_PASS):
+def read_mailbox(inbox:Path|None = INBOX, email_address:str | None = FOTOVIEWER_ADDRESS, password:str | None = FOTOVIEWER_PASS, to_archive=False):
     """Read a simple mailbox (works for hotmail)."""
     if (email_address is None) | (password is None):
         raise ValueError(f"Both 'email_address'{email_address} and 'password' {password} shouldn't be None")
@@ -67,11 +67,12 @@ def read_mailbox(inbox:Path|None = INBOX, email_address:str | None = FOTOVIEWER_
                 eml_file_path = inbox / eml_file_name(subject, email_date)
                 eml_file_path.write_bytes(response_part[1])
 
-                # Copy the email to the Archive folder
-                mail.copy(email_id, 'Archive')
-                
-                # Mark the email as deleted in the current folder
-                mail.store(email_id, '+FLAGS', '\\Deleted')
+                if to_archive:
+                    # Copy the email to the Archive folder
+                    mail.copy(email_id, 'Archive')
+                    
+                    # Mark the email as deleted in the current folder
+                    mail.store(email_id, '+FLAGS', '\\Deleted')
 
     # Expunge to permanently remove the deleted emails
     mail.expunge()

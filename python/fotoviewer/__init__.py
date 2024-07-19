@@ -2,9 +2,9 @@
 import os
 from pathlib import Path
 
-__version__ = "2024.7.0"
+__version__ = "2024.7.1"
 
-FOTOVIEWER_ADDRES = os.getenv("FOTOVIEWER_ADDRES")
+FOTOVIEWER_ADDRESS = os.getenv("FOTOVIEWER_ADDRESS")
 FOTOVIEWER_DATA_DIR = os.getenv("FOTOVIEWER_DATA_DIR")
 FOTOVIEWER_PASS = os.getenv("FOTOVIEWER_PASS")
 
