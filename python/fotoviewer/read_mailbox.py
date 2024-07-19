@@ -23,7 +23,7 @@ def eml_file_name(subject, date_time):
 def read_mailbox(inbox:Path|None = INBOX, email_address:str | None = FOTOVIEWER_ADDRESS, password:str | None = FOTOVIEWER_PASS, to_archive=False):
     """Read a simple mailbox (works for hotmail)."""
     if (email_address is None) | (password is None):
-        raise ValueError(f"Both 'email_address'{email_address} and 'password' {password} shouldn't be None")
+        raise ValueError(f"Both 'email_address' (= {email_address}) and 'password' (= {password}) shouldn't be 'None'. Provide as argument or define FOTOVIEWER_ADDRESS and FOTOVIEWER_PASS environment variables")
     
     # Create inbox and other dirs if do not exist
     if inbox is None:
