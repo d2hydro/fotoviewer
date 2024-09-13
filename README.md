@@ -43,10 +43,12 @@ Maak een `Anaconda` environment met [environment.yml](environment.yml), zie [Ana
 ## Mails processen
 
 ### Data-folder
-Alle mails worden verwerkt met een datastructuur hieronder weergegeven in `app_dir`:
+Alle mails worden verwerkt met een datastructuur hieronder weergegeven in `data_dir`:
 - `inbox` bevat alle emails handmatig, of automatisch, gedownload uit een mailbox en opgeslagen als email-file (eml)
 - `datastore` bevat alle foto's in uit de bijlagen van de emails en de meta-data, onderwerp en inhoud van de emails opgeslagen in `fotos.gpkg` (GeoPackage)
 - `archive` mails die zijn geparsed van `inbox` naar `datastore` worden opgeslagen in `archive`.
+
+De gebruiker dient de folder `data_dir` ergens aan te maken. Deze mag los staan van de webapplicatie. Je kunt deze folder tevens vastleggen in [windows environment variables](#windows-environment-variables)
 
 ```
 data_dir
