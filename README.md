@@ -48,7 +48,7 @@ Alle mails worden verwerkt met een datastructuur hieronder weergegeven in `data_
 - `datastore` bevat alle foto's in uit de bijlagen van de emails en de meta-data, onderwerp en inhoud van de emails opgeslagen in `fotos.gpkg` (GeoPackage)
 - `archive` mails die zijn geparsed van `inbox` naar `datastore` worden opgeslagen in `archive`.
 
-De gebruiker dient de folder `data_dir` ergens aan te maken. Deze mag los staan van de webapplicatie. Je kunt deze folder tevens vastleggen in [windows environment variables](#windows-environment-variables)
+De gebruiker dient de folder `data_dir` aan te maken op een willekeurige plaats. Deze mag los staan van de webapplicatie. Je kunt deze folder tevens vastleggen in [windows environment variables](#windows-environment-variables)
 
 ```
 data_dir
@@ -70,17 +70,17 @@ Voor het versturen van foto's per e-mail is het is het belangrijk dat:
 - U bewust bent dat het `onderwerp` en de `inhoud` van de mail ook in de fotoviewer zichtbaar zullen zijn (discretie geadviseerd).
 
 ### lezen-mails
-E-mails dienen te worden opgeslagen in een lokale `inbox` sub-folder in de [data folder](#data-folder). Als alternatief is het ook mogelijk emails automatisch uit te lezen met een script, zie: [read_mailbox.py](scripts/read_mailbox.py). 
+E-mails dienen te worden opgeslagen in een lokale `inbox` sub-folder in de [data folder](#data-folder). Als alternatief is het ook mogelijk emails automatisch uit te lezen met een script, zie: [python read_mailbox.py](scripts/read_mailbox.py). 
 
 ### processen inbox
 In deze stap wordt vanuit de `inbox` data verplaatst in de [data folder](#data-folder):
 1. Worden emls gelezen uit `inbox`
 2. Foto's en metadata (in `fotos.gpkg`) opgeslagen in `datastore`
 3. Eml's verplaatst van `inbox` naar `archive`
-Dit wordt uitgevoerd met [parse_inbox.py](scripts/parse_inbox.py)
+Dit wordt uitgevoerd met [python parse_inbox.py](scripts/parse_inbox.py)
 
 ### update_app
-In deze stap wordt vanuit `datastore` de [fotoviewer](#runnen-fotoviewer) geupdated. De fotos komen in `app/static/data` te staan en de meta-data in `app/static/js/fotos.js`. Dit wordt uitgevoerd met [update_app.py](scripts/update_app.py)
+In deze stap wordt vanuit `datastore` de [fotoviewer](#runnen-fotoviewer) geupdated. De fotos komen in `app/static/data` te staan en de meta-data in `app/static/js/fotos.js`. Dit wordt uitgevoerd met [python update_app.py](scripts/update_app.py)
 
 ### windows environment variables
 In de scripts wordt verwezen naar `app_dir` (`inbox` en `datastore`), `email_address` en `password`. U hoeft deze variabelen niet in de script te zetten, wanneer u in uw Windows omgevingsvariabelen (environment variables) de volgende variabelen opneemt:
