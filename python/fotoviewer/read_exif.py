@@ -1,7 +1,9 @@
+#%%
 from PIL import Image
 from PIL.ExifTags import TAGS
 from shapely.geometry import Point
 from datetime import datetime
+import pandas as pd
 
 def get_exif_data(image_file):
     """Read EXIF data"""
@@ -21,7 +23,7 @@ def get_exif_data(image_file):
 
 def get_if_exist(data, key):
     """Get metadata if exists"""
-    return data[key] if key in data else None
+    return data[key] if (key in data) else None
 
 def convert_to_degrees(value):
     """Convert exif coordinate to degrees"""
@@ -41,14 +43,17 @@ def get_point(exif_data):
         gps_longitude_ref = get_if_exist(gps_info, 3)
         
         # Convert to point
-        if gps_latitude and gps_latitude_ref and gps_longitude and gps_longitude_ref:
-            lat = convert_to_degrees(gps_latitude)
-            if gps_latitude_ref != "N":
-                lat = -lat
-            lon = convert_to_degrees(gps_longitude)
-            if gps_longitude_ref != "E":
-                lon = -lon
-            return Point(lon, lat)
+        try:
+            if gps_latitude and gps_latitude_ref and gps_longitude and gps_longitude_ref:
+                lat = convert_to_degrees(gps_latitude)
+                if gps_latitude_ref != "N":
+                    lat = -lat
+                lon = convert_to_degrees(gps_longitude)
+                if gps_longitude_ref != "E":
+                    lon = -lon
+                return Point(lon, lat)
+        except ZeroDivisionError:
+            pass
 
 def get_date_time(exif_data):
     """Get datetime from exif metadata"""
@@ -70,3 +75,4 @@ def get_image_metadata(image_path):
             "geometry": geometry,
             "date_time": date_time
         }
+ 

@@ -35,7 +35,11 @@ def read_mailbox(inbox:Path|None = INBOX, email_address:str | None = FOTOVIEWER_
     mail = imaplib.IMAP4_SSL("imap-mail.outlook.com")
 
     # Log in to your account
-    mail.login(email_address, password)
+    try:
+        mail.login(email_address, password)
+    except imaplib.IMAP4.error as e:
+        print(f"kan niet inloggen in {email_address} met wachtwoord {password}")
+        raise(e)
 
     # Select the mailbox you want to download from
     mail.select("inbox")

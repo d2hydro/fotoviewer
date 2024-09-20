@@ -53,6 +53,9 @@ def get_date_time(img_date_time, msg_date_time):
     
     if date_time is None:
         date_time = datetime.now()
+
+    # in local timezone, remove tzinfo
+    date_time = date_time.astimezone().replace(tzinfo=None)
     
     return date_time
 
@@ -118,6 +121,7 @@ def parse_eml(eml_file: Path, datastore: Path, archive:Path):
 
         with io.BytesIO(content) as image_file:
             # read exif from file_objec
+            
             image_metadata = get_image_metadata(image_file)
 
             # only returns img if file is image and exif is complete
