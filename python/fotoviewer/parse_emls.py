@@ -1,7 +1,9 @@
+#%%
 from email import policy
 from email.parser import BytesParser
 from email.utils import parsedate_to_datetime, parseaddr
 from PIL import Image
+from bs4 import BeautifulSoup
 from datetime import datetime
 import io
 from pathlib import Path
@@ -90,16 +92,24 @@ def parse_eml(eml_file: Path, datastore: Path, archive:Path):
     msg_date_time = parsedate_to_datetime(msg_date_time) if msg_date_time  else None
 
     # Get the email body
+    body = ""
     if msg.is_multipart():
         for part in msg.walk():
             content_type = part.get_content_type()
             disposition = str(part.get('Content-Disposition'))
+            # text/plain emails
             if content_type == 'text/plain' and 'attachment' not in disposition:
                 body = part.get_payload(decode=True).decode(part.get_content_charset())
                 break
+            # text/html emails
+            elif content_type == 'text/html' and 'attachment' not in disposition:
+                # If it's HTML, extract plain text using BeautifulSoup
+                html_content = part.get_payload(decode=True).decode(part.get_content_charset())
+                soup = BeautifulSoup(html_content, 'html.parser')
+                body = soup.get_text()  # Convert HTML to plain text
+                break
     else:
         body = msg.get_payload(decode=True).decode(msg.get_content_charset())  
-
 
     # Parse all attachements as images
     for part in msg.iter_attachments():
@@ -191,3 +201,5 @@ def parse_emls(data_dir=FOTOVIEWER_DATA_DIR):
 
         # write gdf to GeoPackage
         gdf.to_file(foto_gpkg, engine="pyogrio")
+
+# %%

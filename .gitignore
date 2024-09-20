@@ -3,3 +3,5 @@
 *.cmd
 /python/fotoviewer.egg-info
 /python/fotoviewer.egg-info
+*.pyc
+*.pyc

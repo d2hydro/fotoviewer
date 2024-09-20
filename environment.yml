@@ -5,6 +5,7 @@ channels:
   - defaults
 
 dependencies:
+  - bs4
   - ipykernel
   - geopandas
   - pyogrio
