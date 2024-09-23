@@ -4,3 +4,5 @@
 /python/fotoviewer.egg-info
 /python/fotoviewer.egg-info
 *.pyc
+app/static/data/*
+app/static/js/fotos.js

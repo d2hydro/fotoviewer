@@ -7,6 +7,7 @@ __version__ = "2024.7.1"
 FOTOVIEWER_ADDRESS = os.getenv("FOTOVIEWER_ADDRESS")
 FOTOVIEWER_DATA_DIR = os.getenv("FOTOVIEWER_DATA_DIR")
 FOTOVIEWER_PASS = os.getenv("FOTOVIEWER_PASS")
+FOTOVIEWER_TOKEN = os.getenv("FOTOVIEWER_TOKEN")
 
 def create_sub_dirs(data_dir):
     for sub_dir in ["inbox", "datastore", "archive"]:
