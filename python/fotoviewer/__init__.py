@@ -2,12 +2,14 @@
 import os
 from pathlib import Path
 
-__version__ = "2024.7.1"
+__version__ = "2024.7.2"
 
-FOTOVIEWER_ADDRESS = os.getenv("FOTOVIEWER_ADDRESS")
+TOKEN_FILE = os.getenv("FOTOVIEWER_TOKEN_FILE")
+CLIENT_ID = os.getenv("FOTOVIEWER_CLIENT_ID")
+CLIENT_SECRET = os.getenv("FOTOVIEWER_CLIENT_SECRET")
 FOTOVIEWER_DATA_DIR = os.getenv("FOTOVIEWER_DATA_DIR")
-FOTOVIEWER_PASS = os.getenv("FOTOVIEWER_PASS")
-FOTOVIEWER_TOKEN = os.getenv("FOTOVIEWER_TOKEN")
+
+AUTHORITY = "https://login.microsoftonline.com/common"
 
 def create_sub_dirs(data_dir):
     for sub_dir in ["inbox", "datastore", "archive"]:
@@ -22,6 +24,7 @@ if FOTOVIEWER_DATA_DIR is not None:
     FOTOVIEWER_DATA_DIR = Path(FOTOVIEWER_DATA_DIR)
     INBOX = FOTOVIEWER_DATA_DIR / "inbox"
     DATASTORE = FOTOVIEWER_DATA_DIR / "datastore"
+    ARCHIVE = FOTOVIEWER_DATA_DIR / "archive"
 
     create_sub_dirs(FOTOVIEWER_DATA_DIR)
 else:
