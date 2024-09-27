@@ -8,6 +8,7 @@ dependencies:
   - bs4
   - ipykernel
   - geopandas
+  - msal
   - pyogrio
   - pillow
   - pip:

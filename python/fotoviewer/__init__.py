@@ -2,7 +2,7 @@
 import os
 from pathlib import Path
 
-__version__ = "2024.9.0"
+__version__ = "2024.9.1"
 
 TOKEN_FILE = os.getenv("FOTOVIEWER_TOKEN_FILE")
 CLIENT_ID = os.getenv("FOTOVIEWER_CLIENT_ID")
