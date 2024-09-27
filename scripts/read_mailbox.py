@@ -17,8 +17,6 @@ data_dir
 
 Argumenten die meegegeven kunnen worden zijn:
 inbox: en pad naar de inbox-folder in bovenstaande structuur. Kan worden gelezen uit OS variabele FOTOVIEWER_DATA_DIR
-email_address: het gebruikersnaam@emailprovider.com email-adres om uit te lezen. Kan worden gelezen uit OS variabele FOTOVIEWER_ADDRESS
-password: het password dat hoort bij de mailbox. Kan worden gelezen uit OS variabele FOTOVIEWER_PASS
 """
 
 read_mailbox()

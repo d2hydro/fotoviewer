@@ -40,6 +40,19 @@ Voor het processen van e-mails gebruiken we Python.
 
 Maak een `Anaconda` environment met [environment.yml](environment.yml), zie [Anaconda docs](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) voor uitleg.
 
+### windows omgevingsvariabelen
+
+In de scripts wordt verwezen naar `app_dir` (`inbox` en `datastore`). U kunt deze opgeven in windows omgevingsvariabele `FOTOVIEWER_DATA_DIR`.
+
+Vanaf fotoviewer versie 2024.9.0 is het niet meer mogelijk met een email_address en password in te loggen in Microsoft Hotmail, omdat deze manier van inloggen niet meer door microsoft wordt ondersteund. U zult daarom de volgende omgevingsvariabelen moeten specificeren:
+- `FOTOVIEWER_CLIENT_ID`: een MS client id behorend bij uw hotmail-account
+- `FOTOVIEWER_CLIENT_SECRET`: een MS client client secret behorend bij uw hotmail-account
+- `FOTOVIEWER_TOKEN_FILE`: verwijzend naar een bestand met een `bearer-token`, tevens benodigd voor het inloggen in uw MS account.
+
+Een voorbeeld van ingerichte omgevingsvariabelen. Alle gevoelige informatie en niet relevante informatie is uitgegrijst/uitgewit:
+
+![omgevingsvariabelen](omgevingsvariabelen.png "Omgevingsvariabelen")
+
 ## Mails processen
 
 ### Data-folder
@@ -81,9 +94,3 @@ Dit wordt uitgevoerd met [python parse_inbox.py](scripts/parse_inbox.py)
 
 ### update_app
 In deze stap wordt vanuit `datastore` de [fotoviewer](#runnen-fotoviewer) geupdated. De fotos komen in `app/static/data` te staan en de meta-data in `app/static/js/fotos.js`. Dit wordt uitgevoerd met [python update_app.py](scripts/update_app.py)
-
-### windows environment variables
-In de scripts wordt verwezen naar `app_dir` (`inbox` en `datastore`), `email_address` en `password`. U hoeft deze variabelen niet in de script te zetten, wanneer u in uw Windows omgevingsvariabelen (environment variables) de volgende variabelen opneemt:
-- `FOTOVIEWER_ADDRESS`: het email-adres (`email_adress`)
-- `FOTOVIEWER_DATA_DIR`: de `data_dir`, zie [Data folder](#data-folder). Ook `inbox` en `datastore` worden hieruit afgeleid.
-- `FOTOVIEWER_PASS`: het password van uw email-adres.

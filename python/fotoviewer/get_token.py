@@ -1,11 +1,9 @@
-# %%
 from flask import Flask, request
 import msal
 import webbrowser
+from fotoviewer import CLIENT_ID, CLIENT_SECRET
 
 # Configuration
-CLIENT_ID = ""
-CLIENT_SECRET = ""
 AUTHORITY = "https://login.microsoftonline.com/common"
 REDIRECT_URI = "http://localhost:5006/getAToken"
 
@@ -46,4 +44,3 @@ def authorized():
 
 if __name__ == "__main__":
     flask_app.run(port=5006)
-# %%
