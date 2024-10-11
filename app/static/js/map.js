@@ -1,50 +1,77 @@
-var projectionExtent = [-285401.92, 22598.08, 595401.9199999999, 903401.9199999999];
+var projectionExtent = [-20037508.3427892439067364,-20037508.3427892476320267, 20037508.3427892439067364,20037508.3427892476320267];
 var projection = new ol.proj.Projection({
-  code: 'EPSG:28992',
+  code: 'EPSG:3857',
   units: 'm',
   extent: projectionExtent
 });
 
 // Background layers
-var brtWaterLayer = new ol.layer.Tile({
+// var brtWaterLayer = new ol.layer.Tile({
+//   source: new ol.source.XYZ({
+//     url: 'https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0/water/EPSG:28992/{z}/{x}/{y}.png',
+//     format: 'image/png',
+//     projection: projection,
+//     matrixSet: 'EPSG:28992',
+//     style: 'default',
+//     tileGrid: new ol.tilegrid.WMTS({
+//       origin: ol.extent.getTopLeft(projectionExtent),
+//       resolutions: [
+//         3440.640,
+//         1720.320,
+//         860.160,
+//         430.080,
+//         215.040,
+//         107.520,
+//         53.760,
+//         26.880,
+//         13.440,
+//         6.720,
+//         3.360,
+//         1.680,
+//         0.840,
+//         0.420,
+//         0.210
+//       ],
+//       matrixIds: ['EPSG:28992:0', 'EPSG:28992:1', 'EPSG:28992:2', 'EPSG:28992:3', 'EPSG:28992:4', 'EPSG:28992:5', 'EPSG:28992:6', 'EPSG:28992:7', 'EPSG:28992:8', 'EPSG:28992:9', 'EPSG:28992:10', 'EPSG:28992:11', 'EPSG:28992:12', 'EPSG:28992:13', 'EPSG:28992:14']
+//     })
+//   })
+// });
+
+// var lufoLayer = new ol.layer.Tile({
+//   source: new ol.source.TileWMS({
+//     extend: [-2000.0, 290000.0, 294000.0, 630000.0],
+//     url: "https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0",
+//     params: {
+//       LAYERS: 'Actueel_orthoHR',
+//       TILED: "true"
+//     }
+//   })
+// });
+
+var osmLayer = new ol.layer.Tile({
   source: new ol.source.XYZ({
-    url: 'https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0/water/EPSG:28992/{z}/{x}/{y}.png',
+    url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
     format: 'image/png',
     projection: projection,
-    matrixSet: 'EPSG:28992',
-    style: 'default',
-    tileGrid: new ol.tilegrid.WMTS({
-      origin: ol.extent.getTopLeft(projectionExtent),
-      resolutions: [
-        3440.640,
-        1720.320,
-        860.160,
-        430.080,
-        215.040,
-        107.520,
-        53.760,
-        26.880,
-        13.440,
-        6.720,
-        3.360,
-        1.680,
-        0.840,
-        0.420,
-        0.210
-      ],
-      matrixIds: ['EPSG:28992:0', 'EPSG:28992:1', 'EPSG:28992:2', 'EPSG:28992:3', 'EPSG:28992:4', 'EPSG:28992:5', 'EPSG:28992:6', 'EPSG:28992:7', 'EPSG:28992:8', 'EPSG:28992:9', 'EPSG:28992:10', 'EPSG:28992:11', 'EPSG:28992:12', 'EPSG:28992:13', 'EPSG:28992:14']
-    })
+    // matrixSet: 'EPSG:28992',
+    style: 'default'
+    // tileGrid: new ol.tilegrid.WMTS({
+    //   origin: ol.extent.getTopLeft(projectionExtent)
+    // })
   })
 });
 
-var lufoLayer = new ol.layer.Tile({
-  source: new ol.source.TileWMS({
-    extend: [-2000.0, 290000.0, 294000.0, 630000.0],
-    url: "https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0",
-    params: {
-      LAYERS: 'Actueel_orthoHR',
-      TILED: "true"
-    }
+
+var satLayer = new ol.layer.Tile({
+  source: new ol.source.XYZ({
+    url: 'https://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}',
+    format: 'image/png',
+    projection: projection,
+    // matrixSet: 'EPSG:28992',
+    style: 'default'
+    // tileGrid: new ol.tilegrid.WMTS({
+    //   origin: ol.extent.getTopLeft(projectionExtent)
+    // })
   })
 });
 
@@ -129,7 +156,7 @@ function enableSlider() {
 function initializeMap() {
   var fotoSource = new ol.source.Vector({
     features: new ol.format.GeoJSON().readFeatures(geoJsonObj, {
-      featureProjection: 'EPSG:28992'
+      featureProjection: 'EPSG:3857'
     })
   });
 
@@ -145,9 +172,9 @@ function initializeMap() {
     style: selectIcon
   });
 
-  var maxExtent = [-285401.92, 22598.08, 595401.9199999999, 903401.9199999999];
+  var maxExtent = [3160932,-118537, 6211684,2626083];
   var view = new ol.View({
-    center: [155000, 463000],
+    center: [4313891,1009996],
     zoom: 3.4,
     projection: projection,
     extent: maxExtent
@@ -160,20 +187,20 @@ function initializeMap() {
   // Initialize the map
   window.map = new ol.Map({
     controls: [zoomControl],
-    layers: [brtWaterLayer, fotoLayer, highlightLayer],
+    layers: [satLayer, osmLayer],
     target: 'map',
     view: view
   });
 
-  // Calculate the extent of all features in the source
-  var extent = fotoSource.getExtent();
+  // // Calculate the extent of all features in the source
+  // var extent = fotoSource.getExtent();
 
-  // Fit the view to the extent of all features
-  view.fit(extent, {
-      size: window.map.getSize(),
-      padding: [200, 200, 200, 200], // Optional padding
-      maxZoom: 15 // Optional max zoom level
-  });
+  // // Fit the view to the extent of all features
+  // view.fit(extent, {
+  //     size: window.map.getSize(),
+  //     padding: [200, 200, 200, 200], // Optional padding
+  //     maxZoom: 15 // Optional max zoom level
+  // });
 
 
 // Click event for features in fotoLayer

@@ -4,12 +4,14 @@
       switchImage.addEventListener('click', function() {
         if (switchImage.getAttribute('src') === 'static/images/brt_water.png') {
           switchImage.setAttribute('src', 'static/images/lufo.png');
-          map.getLayers().setAt(0, brtWaterLayer);
-          switchText.textContent = "Luchtfoto";
+          map.setLayers([osmLayer])
+          // map.getLayers().setAt(0, osmLayer);
+          switchText.textContent = 'Satellite';
         } else {
           switchImage.setAttribute('src', 'static/images/brt_water.png');
-          map.getLayers().setAt(0, lufoLayer);
-          switchText.textContent = "Map";
+          // map.getLayers().setAt(0, satLayer);
+          map.setLayers([satLayer])
+          switchText.textContent = 'OSM';
         }
       });
     });
